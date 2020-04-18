@@ -6,6 +6,6 @@
 
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::THEME,
-    'frontend/Digimatic/ghanshyam',
+    'frontend/digimatic/ghanshyam',
     __DIR__
 );
