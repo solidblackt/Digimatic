@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="default_head_blocks"/>
+    <body>
+        <attribute name="itemtype" value="" />
+        <attribute name="itemscope" value="" />
+        <!-- <referenceBlock name="navigation.sections" remove="true" /> -->
+        <move element="top.search" destination="sidebar.main" before="-"/>
+        <referenceBlock name="footer_links" remove="true" />
+        <referenceBlock name="header.links" remove="true" />
+        <referenceBlock name="form.subscribe" remove="true" />
+        <move element="navigation.sections" destination="header-wrapper" after="-" />
+        <move element="minicart" destination="headercontainer" after="header.top.links" />
+        <move element="header.top.links" destination="headercontainer" before="-" />
+        <move element="promobanner" destination="columns.top" after="breadcrumbs" />
+        <referenceBlock name="top.links">
+            <referenceBlock name="register-link" remove="true" />           <!--for Create Account Link-->
+            <referenceBlock name="authorization-link-login" remove="true"/> <!--for Sign In Link-->
+        </referenceBlock>
+        <referenceContainer name="header.panel">
+            <container name="headercontainer" htmlTag="div" htmlClass="header" before="-">
+            </container>
+            <block class="Magento\Framework\View\Element\Template" name="header.top.links" template="Magento_Theme::html/header_links.phtml" before="-" />
+        </referenceContainer>
+       
+            <block class="Magento\Framework\View\Element\Template" name="promobanner" template="CP_Promobanner::banner.phtml" />
+        
+        <referenceContainer name="footer">
+                <container name="footersubscribeContainer" htmlTag="div" htmlClass="subscribe-container" before="-">
+                </container>
+        </referenceContainer>
+        <move element="form.subscribe" destination="footersubscribeContainer" before="-"/>
+         <referenceContainer name="footer">
+                <container name="footermainContainer" htmlTag="div" htmlClass="main-container" after="footerContainer">
+                </container>
+        </referenceContainer>
+        <referenceContainer name="footermainContainer">
+         <block class="Magento\Cms\Block\Block" name="footer_links_block">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer_links_block</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+         <referenceContainer name="footermainContainer">
+           <block class="Magento\Cms\Block\Block" name="footer-payment-link">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer-payment-link</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <!-- <referenceBlock name="catalog.leftnav" remove="true"/> -->
+        <!-- <referenceBlock name="catalog.navigation.renderer" remove="true" /> -->
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <move element="page.main.title" destination="main" before="-" />
+    </body>
+</page>
